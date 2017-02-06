@@ -18,7 +18,7 @@ function recurse_copy($src,$dst) {
 $jsonString = file_get_contents('json.json');
 $data = json_decode($jsonString, true);
 
-$n=$data[0]['count'] = $data[0]['count']+1;
+$n=$data[0]['count'] = $data[0]['count']++;
 
 
 $filen="ftd$n";

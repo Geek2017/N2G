@@ -1,0 +1,12 @@
+#row {
+    white-space: nowrap;
+}
+#row > div {
+    background: lightblue;
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+}
+#row > div + div {
+    margin-left: 10px
+}

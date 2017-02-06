@@ -1,0 +1,163 @@
+
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Multiple Images Upload Using jQuery, Ajax and PHP by CodexWorld</title>
+
+<link href="style.css" rel="stylesheet" type="text/css" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="jquery.form.js"></script>
+<script type="text/javascript" src="ajax.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#images').on('change',function(){
+		$('#multiple_upload_form').ajaxForm({
+			target:'#images_preview',
+			beforeSubmit:function(e){
+				$('.uploading').show();
+			},
+			success:function(e){
+				$('.uploading').hide();
+			},
+			error:function(e){
+			}
+		}).submit();
+	});
+});
+</script>
+</head>
+
+<body >
+
+
+<div class="container">
+  <h2>Find the Deference</h2>
+ 	
+
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#home">New Quiz</a></li>
+    <li><a data-toggle="tab" href="#menu1">Upload Image</a></li>
+    <li><a data-toggle="tab" href="#menu2">Images Coords.</a></li>
+    <li><a data-toggle="tab" href="#menu3">Settings</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="home" class="tab-pane fade in active">
+      <h3>Create Quiz</h3>
+	   <button onclick="myAjax()" class="btn btn-primary btn-lg  btn-block btn-success">New</button> 
+      <p></p>
+    </div>
+    <div id="menu1" class="tab-pane fade">
+      <h3>Image Upload</h3>
+    <p>
+
+	<div class="upload_div">
+    <form method="post" name="multiple_upload_form" id="multiple_upload_form" enctype="multipart/form-data" action="upload.php">
+    <input type="hidden" name="image_form_submit" value="1"/>
+	<div class="fileUpload btn btn-primary btn-md btn-block">
+    <span>Choose Image</span>
+    <input type="file" class="upload"  name="images[]" id="images" multiple />
+    </div>		
+            <!--<input type="file" name="images[]" id="images" multiple >-->
+        <div class="uploading none">
+            <label>&nbsp;</label>
+            <img src="uploading.gif"/>
+        </div>
+    </form>
+    </div>
+	
+    <div class="gallery" id="images_preview"></div>
+    </div>
+    <div id="menu2" class="tab-pane fade">
+      <h3>Set Images Coordinate</h3>
+	  
+      <p><iframe width="0" height="0" border="0" name="dummyframe" id="dummyframe"></iframe>
+
+	<form name="upload_form"  method="POST" enctype="multipart/form-data" action="process.php" target="dummyframe">
+	<input type="hidden" name="form_submit" value="1"/>
+
+
+    <form name="myForm" >
+	<div id="row">
+    <div id="0">
+	
+	<b>Image1:</b><br>
+	<input value="0" id="count" type="text" name="Id0" hidden>
+     
+	Coordinate1:<br>
+	<input class="form-control input-sm"   type="text" name="c1" id="img1c1" required>
+	  
+	Coordinate2:<br>
+	<input class="form-control input-sm"   type="text" name="c2" id="img1c2" required>
+	</div>
+		<div id="1">
+    <b>Image2:</b><br>
+	<input  value="1" id="count" type="text" name="Id1" hidden>
+	Coordinate1:<br>
+	<input class="form-control input-sm" type="text" name="c1" id="img2c1" required>
+	  
+	Coordinate2:<br>
+	<input class="form-control input-sm" type="text" name="c2" id="img2c2" required>
+	</div>
+	<div id="2">
+    <b>Image3:</b><br>
+	<input value="2" id="count" type="text" name="Id2" hidden>
+	Coordinate1:<br>
+	<input class="form-control input-sm" type="text" name="c1" id="img3c1" required>
+	  
+	Coordinate2:<br>
+	<input class="form-control input-sm" type="text" name="c2" id="img3c2" required>
+	</div>
+    <br>
+
+    <div id="3">
+	<b>Image4:</b><br>
+	<input value="3" id="count" type="text" name="Id3" hidden>
+	Coordinate1:<br>
+	<input class="form-control input-sm" type="text" name="c1" id="img4c1" required>
+	  
+	Coordinate2:<br>
+	<input class="form-control input-sm" type="text" name="c2" id="img4c2" required>
+	</div>
+	
+	<div id="4">
+    <b> Image5:</b><br>
+	<input value="4" id="count" type="text" name="Id4" hidden>
+	Coordinate1:<br>
+	<input class="form-control input-sm" type="text" name="c1" id="img5c1" required>
+	  
+	Coordinate2:<br>
+	<input class="form-control input-sm" type="text" name="c2" id="img5c2" required>
+    </div>
+
+	<div id="5">
+	<b>Caution:</b>
+	<br>
+    <i><span>Pls. make sure all Input's<br> are accurate</span></i>	
+	<br>
+	<br>
+    <button onclick="process()" class="btn btn-primary btn-md btn-block btn-info">Save Coordinates!</button> 	
+    </div>
+	
+	  
+	</form>
+	</div>
+    <br>
+	
+    </div>
+    <div id="menu3" class="tab-pane fade">
+      <h3>Settings</h3>
+      <p><button onclick="go();" class="btn btn-primary btn-lg btn-block btn-info">View Find the defference Quiz!</button></p></p>
+    </div>
+  </div>
+  </form>
+</div>
+
+
+
+</body>
+</html>
